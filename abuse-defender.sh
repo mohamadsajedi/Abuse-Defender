@@ -10,7 +10,7 @@ fi
 function main_menu {
     clear
     echo "----------- Abuse Defender -----------"
-    echo "https://github.com/Kiya6955/Abuse-Defender"
+    echo "https://github.com/mohamadsajedi/Abuse-Defender"
     echo "--------------------------------------"
     echo "Choose an option:"
     echo "1-Block Abuse IP-Ranges"
@@ -60,7 +60,7 @@ function block_ips {
             iptables -F abuse-defender
         fi
 
-        IP_LIST=$(curl -s 'https://raw.githubusercontent.com/Kiya6955/Abuse-Defender/main/abuse-ips.ipv4')
+        IP_LIST=$(curl -s 'https://raw.githubusercontent.com/mohamadsajedi/Abuse-Defender/main/abuse-ips.ipv4')
 
         if [ $? -ne 0 ]; then
             echo "Failed to fetch the IP-Ranges list. Please contact @Kiya6955"
@@ -97,7 +97,7 @@ function setup_auto_update {
     cat <<EOF >/root/abuse-defender-update.sh
 #!/bin/bash
 iptables -F abuse-defender
-IP_LIST=\$(curl -s 'https://raw.githubusercontent.com/Kiya6955/Abuse-Defender/main/abuse-ips.ipv4')
+IP_LIST=\$(curl -s 'https://raw.githubusercontent.com/mohamadsajedi/Abuse-Defender/main/abuse-ips.ipv4')
 for IP in \$IP_LIST; do
     iptables -A abuse-defender -d \$IP -j DROP
 done
